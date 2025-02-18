@@ -30,7 +30,7 @@ public class BallCotroller : MonoBehaviour
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, -rb.linearVelocity.y);
         }
-        else if ("Brick" == objectHit)
+        else if (collision.CompareTag("Brick"))
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, -rb.linearVelocity.y);
             BrickController bc = collision.GetComponent<BrickController>();

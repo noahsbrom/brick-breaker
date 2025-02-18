@@ -6,8 +6,10 @@ public class Boundaries : MonoBehaviour
     public GameObject topWall, bottomWall, leftWall, rightWall;
     public float topBoundary, bottomBoundary, leftBoundary, rightBoundary;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    private void Start()
+    /// <summary>
+    /// Awake is called when the script instance is being loaded.
+    /// </summary>
+    private void Awake()
     {
         SetBoundaries();
     }
