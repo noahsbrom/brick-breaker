@@ -7,7 +7,7 @@ public class LevelManager : MonoBehaviour
 {
     public GameObject brickPrefab;
     public Boundaries boundaries;
-    private int _currentLevel = 1;
+    // private int _currentLevel = 1;
     private float _brickGap = 0.25f;
 
     /// <summary>

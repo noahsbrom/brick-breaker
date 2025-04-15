@@ -1,42 +1,28 @@
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
-public class BallCotroller : MonoBehaviour
+public class BallController : MonoBehaviour
 {
     public Rigidbody2D rb;
-    private readonly float _speed = 10f;
+    public readonly float speed = 10f;
     private int _lives = 3;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
     {
-        Vector2 direction = new Vector2(Random.Range(-1f, 1f), Random.Range(.5f, 1f));
-        rb.linearVelocity = _speed * direction;
+        //Vector2 direction = new Vector2(Random.Range(-1f, 1f), Random.Range(.5f, 1f));
+        Vector2 direction = new Vector2(0, 1);
+        rb.linearVelocity = speed * direction;
     }
 
     /// <summary>
-    /// Sent when another object enters a trigger collider attached to this
-    /// object (2D physics only).
+    /// Sent when an incoming collider makes contact with this object's
+    /// collider (2D physics only).
     /// </summary>
-    /// <param name="collision">The other Collider2D involved in this collision.</param>
-    private void OnTriggerEnter2D(Collider2D collision)
+    /// <param name="other">The Collision2D data associated with this collision.</param>
+    private void OnCollisionEnter2D(Collision2D other)
     {
-        string objectHit = collision.gameObject.name;
-        if ("LeftWall" == objectHit || "RightWall" == objectHit)
-        {
-            rb.linearVelocity = new Vector2(-rb.linearVelocity.x, rb.linearVelocity.y);
-        }
-        else if ("TopWall" == objectHit || "Paddle" == objectHit)
-        {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, -rb.linearVelocity.y);
-        }
-        else if (collision.CompareTag("Brick"))
-        {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, -rb.linearVelocity.y);
-            BrickController bc = collision.GetComponent<BrickController>();
-            bc.HandleCollision();
-        }
-        else 
+        if (other.collider.name == "BottomWall")
         {
             _lives--;
         }
