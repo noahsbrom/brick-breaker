@@ -6,9 +6,12 @@ A simple 2D prototype of a Brick Breaker game developed using Unity's 2D physics
 
 - [x] Ball, paddle, and brick interactions
 - [x] Multi-hit bricks with color state changes
-- [ ] Brick destruction upon depletion
-- [ ] Ball-floor interaction, win/loss conditions
+- [x] Brick destruction upon depletion, win condition
+- [ ] Ball-floor interaction, loss condition
+- [ ] Menus: main, level completed, game over
 - [ ] Level progression
+- [ ] Ball speed variation
+- [ ] Power-ups and power-downs
 - [ ] Save and load functionality (persistent game state)
   
 ## Technologies Used
