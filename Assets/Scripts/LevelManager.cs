@@ -1,3 +1,4 @@
+using System;
 using System.Data;
 using Unity.Collections;
 using UnityEditor;
@@ -5,10 +6,25 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
+    // singleton
+    public static LevelManager instance;
+
     public GameObject brickPrefab;
     public Boundaries boundaries;
     // private int _currentLevel = 1;
-    private float _brickGap = 0.25f;
+    private int _brickCount = 0;
+    private float _brickGap = 0.20f;
+
+    /// <summary>
+    /// Awake is called when the script instance is being loaded.
+    /// </summary>
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+    }
 
     /// <summary>
     /// Start is called on the frame when a script is enabled just before
@@ -19,6 +35,9 @@ public class LevelManager : MonoBehaviour
         SetBricks();
     }
 
+    /// <summary>
+    /// Initialize the brick layout for the level
+    /// </summary>
     private void SetBricks()
     {
         int rows = 2;
@@ -40,8 +59,35 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Set a brick in the scene at a particular x,y coordinate
+    /// </summary>
+    /// <param name="x">x coord of the brick to set</param>
+    /// <param name="y">y coord of the brick to set</param>
     private void SetBrick(float x, float y)
     {
         Instantiate(brickPrefab, new Vector3(x, y, 0), Quaternion.identity);
+        _brickCount++;
+    }
+
+    /// <summary>
+    /// Decrement the count of total bricks once a brick has been deleted
+    /// </summary>
+    public void HandleBrickDeleted() 
+    {
+        _brickCount--;
+        if (_brickCount <= 0)
+        {
+            HandleLevelCompleted();
+        }
+    }
+
+    /// <summary>
+    /// TODO
+    /// </summary>
+    private void HandleLevelCompleted()
+    {
+        // TODO
+        Debug.Log("GAME OVER!!!!");
     }
 }

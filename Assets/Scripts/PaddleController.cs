@@ -35,6 +35,14 @@ public class PaddleController : MonoBehaviour
         rb.linearVelocityX = Mathf.Lerp(rb.linearVelocityX, _targetVelocityX, _acceleration * Time.fixedDeltaTime);
     }
 
+    /// <summary>
+    /// Get the reflection direction of the ball after it has collided with the paddle. The
+    /// reflection direction is determined by the position of contact on the paddle. For example, 
+    /// if the ball hits the left half of the paddle, the ball will be reflected to the left, with a 
+    /// sharper angle the farther from the center the contact occurs.
+    /// </summary>
+    /// <param name="relativeContactPointX">the contact point relative to the paddle position</param>
+    /// <returns>reflection direction of the ball</returns>
     private Vector2 GetReflectionDirection(float relativeContactPointX)
     {
         // reflection angle restrictions in degrees
@@ -48,7 +56,6 @@ public class PaddleController : MonoBehaviour
         float newAngle = leftAngleLimit + ((relativeContactPointX + maxX) * conversionRatio);
 
         // rotate angle to be relative to y axis
-        Debug.Log($"angle = {newAngle}");
         float radians = newAngle * Mathf.Deg2Rad;
         return new Vector2(Mathf.Cos(radians), Mathf.Sin(radians));
     }

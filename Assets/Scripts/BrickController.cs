@@ -39,7 +39,8 @@ public class BrickController : MonoBehaviour
         _hitsRemaining--;
         if (0 >= _hitsRemaining)
         {
-            Debug.Log("BRICK FINISHED");
+            Destroy(this.gameObject);
+            LevelManager.instance.HandleBrickDeleted();
         }
         else 
         {
