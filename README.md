@@ -25,7 +25,7 @@ A simple 2D prototype of a Brick Breaker game developed using Unity's 2D physics
 2. Open the project in Unity
 3. Play the game in the Unity Editor
 
-- TODO: provide builds for Mac, Windows, Linx 
+- TODO: provide builds for Mac, Windows, Linux 
 
 ## License
 
