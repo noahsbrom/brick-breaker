@@ -29,10 +29,15 @@ public class BrickController : MonoBehaviour
         sr.color = _colorMap[_hitsRemaining];
     }
 
-    public void HandleCollision()
+    /// <summary>
+    /// Sent when an incoming collider makes contact with this object's
+    /// collider (2D physics only).
+    /// </summary>
+    /// <param name="collision">The Collision2D data associated with this collision.</param>
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         _hitsRemaining--;
-        if (0 == _hitsRemaining)
+        if (0 >= _hitsRemaining)
         {
             Debug.Log("BRICK FINISHED");
         }
@@ -40,6 +45,5 @@ public class BrickController : MonoBehaviour
         {
             sr.color = _colorMap[_hitsRemaining];
         }
-
     }
 }
